@@ -1,0 +1,323 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public directory profile for a Tammie user (PII-free).",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the user."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name shown in chats and contacts."
+        },
+        "photoUrl": {
+          "type": "string",
+          "description": "Optional profile photo URL."
+        },
+        "bio": {
+          "type": "string",
+          "description": "Short user bio or status message."
+        },
+        "avatarColorHex": {
+          "type": "string",
+          "description": "Hex color for avatar fallback badge."
+        },
+        "showLastSeen": {
+          "type": "boolean",
+          "description": "Whether Last Seen status is shared with contacts."
+        },
+        "online": {
+          "type": "boolean",
+          "description": "Whether user is currently active in the app."
+        },
+        "discoverable": {
+          "type": "boolean",
+          "description": "Whether profile appears in contact search."
+        },
+        "lastSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last activity."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last profile update."
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "bio",
+        "avatarColorHex",
+        "showLastSeen",
+        "online",
+        "discoverable",
+        "lastSeenAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Direct 1:1 or group conversation metadata and encrypted last message preview.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["DIRECT", "GROUP"],
+          "description": "Conversation kind."
+        },
+        "title": {
+          "type": "string",
+          "description": "Group chat title or empty for direct chat."
+        },
+        "accentColorHex": {
+          "type": "string",
+          "description": "Accent color hex for group header/badge."
+        },
+        "memberUids": {
+          "type": "array",
+          "description": "Participant user UIDs."
+        },
+        "memberNames": {
+          "type": "object",
+          "description": "Map of UID to display name."
+        },
+        "adminUid": {
+          "type": "string",
+          "description": "Creator/admin UID."
+        },
+        "encryptionSalt": {
+          "type": "string",
+          "description": "Per-conversation key derivation salt."
+        },
+        "lastMessageCiphertext": {
+          "type": "string",
+          "description": "AES-256-GCM ciphertext of last message preview."
+        },
+        "lastMessageIv": {
+          "type": "string",
+          "description": "Base64 IV for last message preview."
+        },
+        "lastMessageType": {
+          "type": "string",
+          "enum": ["NONE", "TEXT", "IMAGE", "DOCUMENT"],
+          "description": "Type of last message."
+        },
+        "lastMessageSenderId": {
+          "type": "string",
+          "description": "UID of last message sender."
+        },
+        "lastMessageAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last message."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when conversation was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update."
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "accentColorHex",
+        "memberUids",
+        "memberNames",
+        "adminUid",
+        "encryptionSalt",
+        "lastMessageCiphertext",
+        "lastMessageIv",
+        "lastMessageType",
+        "lastMessageSenderId",
+        "lastMessageAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "End-to-end encrypted message with optional Firebase Storage attachment metadata.",
+      "type": "object",
+      "properties": {
+        "senderId": {
+          "type": "string",
+          "description": "Sender UID."
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Sender display name."
+        },
+        "memberUids": {
+          "type": "array",
+          "description": "Denormalized conversation member UIDs for fast security evaluation."
+        },
+        "messageType": {
+          "type": "string",
+          "enum": ["TEXT", "IMAGE", "DOCUMENT"],
+          "description": "Message category."
+        },
+        "ciphertext": {
+          "type": "string",
+          "description": "AES-256-GCM encrypted message body or caption."
+        },
+        "iv": {
+          "type": "string",
+          "description": "Base64 initialization vector."
+        },
+        "encryptionVersion": {
+          "type": "integer",
+          "description": "Cipher version (1)."
+        },
+        "attachmentUrl": {
+          "type": "string",
+          "description": "Optional Firebase Storage download URL."
+        },
+        "attachmentPath": {
+          "type": "string",
+          "description": "Optional Firebase Storage object path."
+        },
+        "attachmentName": {
+          "type": "string",
+          "description": "Optional original filename."
+        },
+        "attachmentMimeType": {
+          "type": "string",
+          "description": "Optional MIME type."
+        },
+        "attachmentSizeBytes": {
+          "type": "integer",
+          "description": "Optional file size in bytes."
+        },
+        "inlinePreviewBase64": {
+          "type": "string",
+          "description": "Optional small compressed image fallback when Storage bucket is unavailable."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of message creation."
+        }
+      },
+      "required": [
+        "senderId",
+        "senderName",
+        "memberUids",
+        "messageType",
+        "ciphertext",
+        "iv",
+        "encryptionVersion",
+        "createdAt"
+      ]
+    },
+    "CallSession": {
+      "title": "CallSession",
+      "description": "Real-time audio/video call signaling session.",
+      "type": "object",
+      "properties": {
+        "conversationId": {
+          "type": "string",
+          "description": "Parent conversation ID."
+        },
+        "callerUid": {
+          "type": "string",
+          "description": "Caller UID."
+        },
+        "callerName": {
+          "type": "string",
+          "description": "Caller display name."
+        },
+        "calleeNames": {
+          "type": "string",
+          "description": "Formatted callee name(s)."
+        },
+        "calleeUids": {
+          "type": "array",
+          "description": "Target callee UIDs."
+        },
+        "participantUids": {
+          "type": "array",
+          "description": "All participant UIDs (caller + callees)."
+        },
+        "callType": {
+          "type": "string",
+          "enum": ["AUDIO", "VIDEO"],
+          "description": "Call media type."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["RINGING", "CONNECTED", "DECLINED", "ENDED", "MISSED"],
+          "description": "Call signaling state."
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when call initiated."
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional server timestamp when call ended."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last status change."
+        }
+      },
+      "required": [
+        "conversationId",
+        "callerUid",
+        "callerName",
+        "calleeNames",
+        "calleeUids",
+        "participantUids",
+        "callType",
+        "status",
+        "startedAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Public directory profiles for Tammie users."
+    },
+    "/conversations/{conversationId}": {
+      "schema": {
+        "$ref": "#/entities/Conversation"
+      },
+      "description": "Direct and group conversations."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/Message"
+      },
+      "description": "Encrypted messages and file attachment metadata within a conversation."
+    },
+    "/calls/{callId}": {
+      "schema": {
+        "$ref": "#/entities/CallSession"
+      },
+      "description": "Live audio/video call signaling sessions."
+    }
+  }
+}

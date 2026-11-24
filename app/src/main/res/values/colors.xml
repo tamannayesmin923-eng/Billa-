@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tammie_teal_primary">#FF0D7C7B</color>
+    <color name="tammie_teal_dark">#FF084C4D</color>
+    <color name="tammie_teal_light">#FF4FD1C5</color>
+    <color name="tammie_slate_bg">#FFF5F8FA</color>
+    <color name="tammie_slate_dark_bg">#FF0C141A</color>
+    <color name="tammie_amber_accent">#FFC87A19</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

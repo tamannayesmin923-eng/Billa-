@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Soft outer shadow/glow for chat bubble -->
+    <path
+        android:fillColor="#26052F30"
+        android:pathData="M54,29C38.5,29 26,39.8 26,53.2C26,60.3 29.5,66.7 35.1,71.1L32.2,80.4C31.8,81.7 33.1,82.8 34.3,82.2L44.7,76.7C47.7,77.5 50.8,77.9 54,77.9C69.5,77.9 82,67.1 82,53.7C82,40.3 69.5,29 54,29Z" />
+    <!-- Primary crisp white chat bubble centered in 66dp safe zone -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,27C38.5,27 26,37.8 26,51.2C26,58.3 29.5,64.7 35.1,69.1L32.2,78.4C31.8,79.7 33.1,80.8 34.3,80.2L44.7,74.7C47.7,75.5 50.8,75.9 54,75.9C69.5,75.9 82,65.1 82,51.7C82,38.3 69.5,27 54,27Z" />
+    <!-- Encrypted shield / T monogram accent inside bubble -->
+    <path
+        android:fillColor="#0D7C7B"
+        android:pathData="M43,43.5C43,42.1 44.1,41 45.5,41H62.5C63.9,41 65,42.1 65,43.5C65,44.9 63.9,46 62.5,46H56.5V61.5C56.5,62.9 55.4,64 54,64C52.6,64 51.5,62.9 51.5,61.5V46H45.5C44.1,46 43,44.9 43,43.5Z" />
+    <!-- Warm amber encryption spark dot -->
+    <path
+        android:fillColor="#E08E26"
+        android:pathData="M67.5,38.5m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+</vector>

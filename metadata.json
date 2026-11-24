@@ -1,0 +1,6 @@
+{
+  "name": "Tammie",
+  "description": "Bilingual (Bengali & English) encrypted real-time messaging, file sharing, and live audio/video calling app.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
